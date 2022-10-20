@@ -34,7 +34,7 @@ const charitySchema =  new mongoose.Schema({
         maxLenght:[14,"Phone No cannot exceed 14 digits"],
         minLenght:[11,"Card No Should be having 11 digits"]
     },
-    date : { type: Number, default: (new Date()).getTime() } 
+    date : { type: Date, default: (new Date()).getTime() } 
 
 })
 

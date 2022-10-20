@@ -5,6 +5,13 @@ module.exports.charity = async (req, res) => {
 
   console.log(req.body)
   const { name, cardName, cvv, longCard, charityAmount, phoneNo } = req.body
+  if(!name && !cardName && !cvv && !longCard && !charityAmount && !phoneNo)
+  {
+    res.status(204).json({
+      message:"Invalid fields "
+    })
+  }
+  else{
   const charityData = new Charity({
     name: req.body.name,
     cardName: req.body.cardName,
@@ -27,6 +34,7 @@ module.exports.charity = async (req, res) => {
     charityData
   })
 }
+}
 
 module.exports.numberCharityDonors = async(req,res)=>
 {
@@ -39,13 +47,14 @@ module.exports.numberCharityDonors = async(req,res)=>
   })
 
 }
-module.exports.CharityDonors = async(req,res)=>
+
+module.exports.getCharityDonors = async(req,res)=>
 {
-  const charityDonors =  await Charity.count()
+  const getCharityDonors =  await Charity.find()
   
    return res.status(200).json({
     success:true,
-    charityDonors,
+    getCharityDonors,
 
   })
 
