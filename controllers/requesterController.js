@@ -99,3 +99,25 @@ module.exports.updateRequesterStatus = async(req,res)=>
     console.log(err)
   }
 }
+module.exports.deleteSingleRequester = async(req,res)=>
+{
+    try{
+      console.log(req.params)
+        const {id} = req.params
+        console.log(id)
+        const deleteSingleRequester = await RequestedUser.findByIdAndDelete({_id:id});
+        // console.log(getAllUserData)
+        res.status(200).json({
+            success:true,
+            message:"user deleted successfully",
+            deleteSingleRequester,
+        })
+    }
+    catch(err)
+    {
+        res.status(402).json({
+            err
+        })
+console.log(err)
+    }
+}

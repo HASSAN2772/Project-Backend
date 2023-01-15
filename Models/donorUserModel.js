@@ -1,32 +1,31 @@
 const mongoose = require("mongoose");
 
 const donorSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        
-    }, cnic:{
-        type:Number,      
+  name: {
+    type: String,
+  },
+  cnic: {
+    type: Number,
+  },
+  city: {
+    type: String,
+  },
+  blood: {
+    type: String,
+  },
+  donorAge: {
+    type: Number,
+  },
+  phoneNo: {
+    type: Number,
+  },
+  donorAddress: {
+    type: String,
+  },
+  bloodStatus: {
+    type: String,
+    default: "Not Recieved",
+  },
+});
 
-        
-    }, city:{
-        type:String,
-        
-    }, blood:{
-        type:String,
-        
-    }, donorAge:{
-        type:Number,
-
-        
-    }, phoneNo:{
-        type:Number,
-        
-    },
-    donorAddress:{
-        type:String,
- },
-
-})
-
-module.exports =  mongoose.model("DonorUser",donorSchema)
-
+module.exports = mongoose.model("DonorUser", donorSchema);
