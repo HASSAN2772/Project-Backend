@@ -70,8 +70,8 @@ router.route("/requested/users").get(numberRequestedBloood);
 router.route("/users").get(gettotalUsers);
 //
 router.route("/blood/request").post(requestBloodUser);
-router.route("/donate/blood").post(isAuthUser, donateBlood);
-router.route("/charity").post(isAuthUser, charity);
+router.route("/donate/blood").post(donateBlood);
+router.route("/charity").post(charity);
 //testoing
 // router.route("/").post(isAuthUser,TestData)
 //

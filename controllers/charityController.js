@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Charity = require("../Models/CharityModel");
 
 module.exports.charity = async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.name);
+
   const { name, cardName, cvv, longCard, charityAmount, phoneNo } = req.body;
   if (!name && !cardName && !cvv && !longCard && !charityAmount && !phoneNo) {
     res.status(204).json({
