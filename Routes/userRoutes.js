@@ -7,6 +7,7 @@ const {
   deleteSingleCharity,
   getSingleCharityUser,
 } = require("../controllers/charityController");
+const { getUserComment } = require("../controllers/commentsControllers");
 const {
   donateBlood,
   getAllDonors,
@@ -40,6 +41,7 @@ const {
   updatePasswordReset,
   updateUserRole,
 } = require("../controllers/userController");
+const CharityModel = require("../Models/CharityModel");
 const { updateUserStatus } = require("../Models/userModel");
 const { searchApp } = require("../utils/apiSearch");
 const router = express.Router();
@@ -81,10 +83,24 @@ router.route("/charity/donors").get(numberCharityDonors);
 router.route("/donors/detail").get(getAllDonors);
 router.route("/donors").get(getDonors);
 router.route("/application/:key").get(searchApp);
+
+router.route("/user-comments").post(getUserComment);
 //
 router.route("/forgot/password").post(getOttpByEmail);
 router.route("/forgot/password/token/:id/:token").get(verifyUserByResetToken);
 router.route("/:id/:token").post(updatePasswordReset);
 // router.route("/password/ottp/:id/:token").post(submitOttp)
+router.get("/charitySum", async (req, res) => {
+  const totalamount = await CharityModel.aggregate([
+    {
+      $group: {
+        _id: null,
+        donate: { $sum: "$donate" },
+      },
+    },
+  ]);
+  // console.log(totalamount);
+  res.status(200).send(totalamount);
+});
 
 module.exports = router;
